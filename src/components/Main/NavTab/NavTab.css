@@ -1,0 +1,27 @@
+.nav-tab {
+  text-align: center;
+  background-color: black;
+  padding: 24px 0;
+  max-width: 1280px;
+  margin: auto;
+}
+
+.nav-tab__links {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-tab__link {
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  text-decoration-line: underline;
+  color: white;
+  text-decoration: underline;
+}

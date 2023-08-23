@@ -1,0 +1,19 @@
+.auth-area {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.auth-area__log {
+  background-color: black;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 3px;
+}

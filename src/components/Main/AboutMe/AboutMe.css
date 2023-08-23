@@ -1,0 +1,63 @@
+.student {
+  box-sizing: border-box;
+  margin: auto;
+  max-width: 1280px;
+  padding: 110px 70px 100px 70px;
+}
+
+.student__info {
+  padding: 66px 0 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.student__text {
+  max-width: 600px;
+}
+
+.student__name {
+  margin: 0 0 18px 0;
+  padding: 0;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: -2px;
+}
+
+.student__profession {
+  margin: 0 0 26px 0;
+  padding: 0;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  font-feature-settings: 'clig' off, 'liga' off;
+}
+
+.student__about {
+  margin: 0 0 99px 0;
+  padding: 0;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.student__image {
+    border-radius: 10px;
+    width: 270px;
+    max-height: 327px;
+    background-image: url("../../../images/student.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.student_github {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
