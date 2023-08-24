@@ -1,7 +1,4 @@
 .techs {
-  box-sizing: border-box;
-  max-width: 1280px;
-  margin: auto;
   padding: 100px 70px;
   background-color: #f5f5f5;
 }
@@ -24,7 +21,7 @@
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 20px; /* 142.857% */
+  line-height: 20px;
   letter-spacing: -0.56px;
 }
 

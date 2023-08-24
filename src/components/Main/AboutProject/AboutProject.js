@@ -1,6 +1,6 @@
 const AboutProject = () => {
   return (
-    <section className='about-project' id="about-project">
+    <section className='about-project' id="about-project" aria-label="Описание дипломного проекта">
       <h2 className='about-project__heading'>О проекте</h2>
       <div className='about-project__duration'>
         <div className='about-project__thesis'>

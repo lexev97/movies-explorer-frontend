@@ -18,7 +18,10 @@ const Navigation = () => {
           <a className='link' href='#'>
             Аккаунт
           </a>
-          <ProfileIcon />
+          <ProfileIcon
+            iconInner='black'
+            iconOuter='#F9F9F9'
+          />
         </li>
       </ul>
     </nav>

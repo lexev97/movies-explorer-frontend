@@ -1,13 +1,13 @@
 import AuthArea from './AuthArea/AuthArea';
-// import Navigation from '../Navigation/Navigation';
+import Navigation from '../Navigation/Navigation';
 import LogoIcon from '../Svg/LogoIcon';
 
 const Header = () => {
   return (
-    <header className='header header_color_pink'>
+    <header className='header'>
         <LogoIcon />
-        <AuthArea />
-        {/* <Navigation/> */}
+        {/* <AuthArea /> */}
+        <Navigation/>
     </header>
   );
 };

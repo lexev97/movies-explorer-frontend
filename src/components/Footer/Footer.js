@@ -5,7 +5,7 @@ const Footer = () => {
         Учебный проект Яндекс.Практикум х BeatFilm.
       </h2>
       <div className='footer__bottom'>
-        <p className='footer__copyrights'>&#169; 2023</p>
+        <p className='footer__copyrights'>&#169; 2020</p>
         <ul className='footer__links'>
           <li className='footer__link'>
             <a
