@@ -1,6 +1,6 @@
 const Portfolio = () => {
   return (
-    <section className='portfolio' aria-label="Ссылки на другие проекты">
+    <section className='portfolio' aria-label='Ссылки на другие проекты'>
       <h2 className='portfolio__title'>Портфолио</h2>
       <ul className='portfolio__links'>
         <li className='portfolio__link'>

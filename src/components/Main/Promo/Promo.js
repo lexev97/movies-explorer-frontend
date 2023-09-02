@@ -1,6 +1,6 @@
 const Promo = () => {
   return (
-    <section className='promo' aria-label="Баннер">
+    <section className='promo' aria-label='Баннер'>
       <h1 className='promo__title'>
         Учебный проект студента факультета Веб-разработки.
       </h1>

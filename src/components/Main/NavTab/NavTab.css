@@ -1,7 +1,9 @@
 .nav-tab {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: black;
-  padding: 24px 0;
+  height: 66px;
 }
 
 .nav-tab__links {
@@ -22,4 +24,10 @@
   text-decoration-line: underline;
   color: white;
   text-decoration: underline;
+}
+
+@media screen and (max-width: 320px) {
+  .nav-tab__link {
+    font-size: 11px;
+  }
 }

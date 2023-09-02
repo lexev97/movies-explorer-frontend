@@ -1,6 +1,10 @@
 const AboutMe = () => {
   return (
-    <section className='student' id='student' aria-label="Информация о студенте">
+    <section
+      className='student'
+      id='student'
+      aria-label='Информация о студенте'
+    >
       <h2 className='about-project__heading'>Студент</h2>
       <div className='student__info'>
         <div className='student__text'>

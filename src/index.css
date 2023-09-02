@@ -24,3 +24,9 @@
 @import url(./components/Movies/SearchForm/FilterCheckbox/FilterCheckbox.css);
 @import url(./components/Movies/MoviesCardList/MoviesCardList.css);
 @import url(./components/Movies/MoviesCard/MoviesCard.css);
+
+@import url(./components/Profile/Profile.css);
+
+@import url(./components/PopupWithForm/PopupWithForm.css);
+@import url(./components/Popup404/Popup404.css);
+@import url(./components/Navigation/Burger/Burger.css);

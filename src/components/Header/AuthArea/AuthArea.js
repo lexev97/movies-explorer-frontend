@@ -1,15 +1,25 @@
-const AuthArea = () => {
+import { Link, useNavigate } from 'react-router-dom';
+
+const AuthArea = (props) => {
+  const navigate = useNavigate();
+
   return (
     <ul className='auth-area'>
-      <li className='auth-area__reg opacity07'>
-        <a className='link' href='#'>
+      <li>
+        <Link className='auth-area__reg opacity08' to='/signup'>
           Регистрация
-        </a>
+        </Link>
       </li>
-      <li className='auth-area__log opacity08'>
-        <a className='link' href='#'>
+      <li>
+        <button
+          className='auth-area__log opacity08'
+          to='/signin'
+          onClick={() => {
+            navigate('/signin');
+          }}
+        >
           Войти
-        </a>
+        </button>
       </li>
     </ul>
   );

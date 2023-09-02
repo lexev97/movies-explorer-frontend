@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
+
 const LogoIcon = () => {
   return (
-    <a className="opacity08" href='#about-project'>
+    <Link className='opacity08' to='/'>
       <svg
         width='38'
         height='38'
@@ -15,7 +17,7 @@ const LogoIcon = () => {
           fill='black'
         />
       </svg>
-    </a>
+    </Link>
   );
 };
 

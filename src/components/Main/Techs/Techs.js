@@ -1,6 +1,10 @@
 const Techs = () => {
   return (
-    <section className='techs' id="techs" aria-label="Использованные технологии">
+    <section
+      className='techs'
+      id='techs'
+      aria-label='Использованные технологии'
+    >
       <h2 className='about-project__heading'>Технологии</h2>
       <h3 className='techs__title'>7 технологий</h3>
       <p className='techs__description'>

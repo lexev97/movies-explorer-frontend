@@ -1,4 +1,4 @@
-import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
+import FilterCheckbox from './FilterCheckbox/FilterCheckbox';
 
 const SearchForm = () => {
   return (
