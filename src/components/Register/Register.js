@@ -14,10 +14,10 @@ const Register = (props) => {
         <input
           className='popup__input'
           type='text'
-          id='description-input'
           name='descriptionInput'
           minLength='2'
           maxLength='50'
+          placeholder='Алексей'
           required
         />
       </label>
@@ -27,6 +27,7 @@ const Register = (props) => {
           className='popup__input'
           type='email'
           id='email-input'
+          placeholder='email@example.com'
           required
         />
       </label>
@@ -37,6 +38,7 @@ const Register = (props) => {
           type='password'
           id='description-input'
           name='descriptionInput'
+          placeholder='Пароль минимум из 6 знаков'
           minLength='6'
           maxLength='50'
           required

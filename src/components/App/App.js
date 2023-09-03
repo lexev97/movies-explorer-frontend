@@ -26,9 +26,20 @@ function App() {
     navigate('/');
   };
 
+  const headerIsVisible =
+    location.pathname === '/' ||
+    location.pathname === '/movies' ||
+    location.pathname === '/saved-movies' ||
+    location.pathname === '/profile';
+
+  const footerIsVisible =
+    location.pathname === '/' ||
+    location.pathname === '/movies' ||
+    location.pathname === '/saved-movies';
+
   return (
     <Fragment>
-      <Header isLoggedIn={isLoggedIn} />
+      {headerIsVisible && <Header isLoggedIn={isLoggedIn} />}
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/movies' element={<Movies />} />
@@ -38,7 +49,7 @@ function App() {
         <Route path='/signup' element={<Register />} />
         <Route path='/*' element={<Popup404 />} />
       </Routes>
-      {location.pathname !== '/profile' && <Footer />}
+      {footerIsVisible && <Footer />}
     </Fragment>
   );
 }

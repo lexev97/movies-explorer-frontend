@@ -3,10 +3,10 @@ import LogoIcon from '../Svg/LogoIcon';
 
 const PopupWithForm = (props) => {
   return (
-    <section className={`popup`} aria-label='Модальное окно'>
+    <main className={`popup`} aria-label='Модальное окно'>
       <div className='popup__wrapper'>
         <LogoIcon />
-        <h2 className='popup__title'>{props.title}</h2>
+        <h1 className='popup__title'>{props.title}</h1>
         <form
           className='popup__form'
           name={`${props.name}Form`}
@@ -29,7 +29,7 @@ const PopupWithForm = (props) => {
           </Link>
         </div>
       </div>
-    </section>
+    </main>
   );
 };
 

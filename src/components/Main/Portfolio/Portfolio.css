@@ -3,7 +3,7 @@
   max-width: 1280px;
   width: 100%;
   margin: auto;
-  padding: 0 70px 125px 70px;
+  padding: 0 50px 72px 50px;
 }
 
 .portfolio__title {
@@ -25,7 +25,7 @@
 
 .portfolio__link {
   border-bottom: 1px solid #e8e8e8;
-  padding: 20px 0;
+  padding: 20px 0 19px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -36,6 +36,11 @@
   line-height: 50px;
   letter-spacing: -1.2px;
 }
+.portfolio__link a {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
 
 .portfolio__link:last-of-type {
   border-bottom: none;
@@ -43,7 +48,7 @@
 
 @media screen and (max-width: 768px) {
   .portfolio {
-    padding: 0 50px 90px 50px;
+    padding: 0 50px 72px 50px;
   }
 
   .portfolio__link {
@@ -59,6 +64,7 @@
   .portfolio__title {
     font-size: 14px;
     line-height: 20px;
+    margin: 0 0 19px 0;
   }
 
   .portfolio__link {

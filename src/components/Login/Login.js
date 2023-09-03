@@ -16,6 +16,7 @@ const Login = (props) => {
           className='popup__input'
           type='email'
           id='email-input'
+          placeholder='email@example.com'
           required
         />
       </label>
@@ -24,8 +25,8 @@ const Login = (props) => {
         <input
           className='popup__input'
           type='password'
-          id='description-input'
           name='descriptionInput'
+          placeholder='Пароль минимум из 6 знаков'
           minLength='6'
           maxLength='50'
           required

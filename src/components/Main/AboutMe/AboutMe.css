@@ -1,5 +1,18 @@
 .student {
-  padding: 110px 70px 100px 70px;
+  padding: 112px 70px 100px 70px;
+}
+
+.student__heading {
+  width: 100%;
+  padding: 0 0 23px 0;
+  text-align: start;
+  margin: 0;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  border-bottom: 1px solid black;
 }
 
 .student__info {
@@ -11,12 +24,12 @@
 }
 
 .student__text {
-  max-width: 600px;
+  max-width: 595px;
   flex: 1 1 200px;
 }
 
 .student__name {
-  margin: 0 0 18px 0;
+  margin: 0 0 19px 0;
   padding: 0;
   font-size: 50px;
   font-style: normal;
@@ -26,7 +39,7 @@
 }
 
 .student__profession {
-  margin: 0 0 26px 0;
+  margin: 0 0 25px 0;
   padding: 0;
   font-size: 18px;
   font-style: normal;
@@ -46,7 +59,6 @@
 }
 
 .student__image {
-  flex-shrink: 0;
   border-radius: 10px;
   width: 270px;
   height: 327px;
@@ -96,12 +108,18 @@
 
 @media screen and (max-width: 320px) {
   .student {
-    padding: 70px 14px;
+    padding: 71px 14px;
+  }
+
+  .student__heading {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    padding: 0 0 28px 0;
   }
 
   .student__info {
     padding: 60px 0 0 0;
-    gap: 40px;
+    gap: 38px;
   }
   .student__image {
     width: 292px;
@@ -109,7 +127,7 @@
   }
 
   .student__name {
-    margin: 0 0 20px 0;
+    margin: 0 0 18px 0;
     font-size: 30px;
     letter-spacing: -1.2px;
   }
@@ -121,7 +139,7 @@
   }
 
   .student__about {
-    margin: 0 0 40px 0;
+    margin: 0 0 39px 0;
     font-size: 11px;
     line-height: 16px;
   }

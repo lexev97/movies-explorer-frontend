@@ -12,8 +12,8 @@ const AuthArea = (props) => {
       </li>
       <li>
         <button
+          type='button'
           className='auth-area__log opacity08'
-          to='/signin'
           onClick={() => {
             navigate('/signin');
           }}

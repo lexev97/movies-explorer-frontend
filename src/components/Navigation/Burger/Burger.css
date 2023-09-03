@@ -5,12 +5,14 @@
   justify-content: center;
   gap: 7px;
   z-index: 5;
+  margin: 8px;
 }
 
 .burger_pressed {
   position: fixed;
   top: 26px;
-  right: 30px;
+  right: 24px;
+  margin: 0;
 }
 
 .burger__line {
@@ -59,6 +61,7 @@
 @media screen and (max-width: 320px) {
   .burger {
     gap: 6.5px;
+    margin: 0 8px 0 0;
   }
 
   .burger__line {
@@ -67,8 +70,9 @@
   }
 
   .burger_pressed {
-    top: 26px;
-    right: 14px;
+    top: 18px;
+    right: 18px;
+    margin: 0;
   }
 
   .burger__line_turn-line1 {

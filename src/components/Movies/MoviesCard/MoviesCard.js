@@ -11,10 +11,10 @@ const MoviesCard = (props) => {
       <img
         src={props.movie.thumbnail}
         className='card__image'
-        alt='Кадр из фильма'
+        alt={props.movie.nameRU}
       ></img>
       <div className='card__description'>
-        <span className='card__name'>{props.movie.nameRU}</span>
+        <h2 className='card__name'>{props.movie.nameRU}</h2>
         <span className='card__duration'>
           {getHourTimeFormat(props.movie.duration)}
         </span>

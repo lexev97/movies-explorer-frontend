@@ -4,23 +4,23 @@ const Burger = (props) => {
   return (
     <Fragment>
       <div
-        class={`burger opacity08 ${
+        className={`burger opacity08 ${
           props.burgerIsPressed ? 'burger_pressed' : ''
         }`}
         onClick={props.onClick}
       >
         <span
-          class={`burger__line ${
+          className={`burger__line ${
             props.burgerIsPressed ? 'burger__line_turn-line1' : ''
           }`}
         ></span>
         <span
-          class={`burger__line ${
+          className={`burger__line ${
             props.burgerIsPressed ? 'burger__line_remove-line2' : ''
           }`}
         ></span>
         <span
-          class={`burger__line ${
+          className={`burger__line ${
             props.burgerIsPressed ? 'burger__line_turn-line3' : ''
           }`}
         ></span>

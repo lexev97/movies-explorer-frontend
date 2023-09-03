@@ -35,3 +35,17 @@
   line-height: normal;
   text-decoration: none;
 }
+
+@media screen and (max-width: 320px) {
+  .popup404__title {
+    margin: 273px auto 10px auto;
+     font-size: 80px;
+  }
+  .popup404__subtitle{
+    font-size: 12px;
+    margin: 0 0 285px 0;
+  }
+  .popup404__link {
+    font-size: 12px;
+  }
+}

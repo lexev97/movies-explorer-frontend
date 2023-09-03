@@ -5,7 +5,7 @@ const AboutMe = () => {
       id='student'
       aria-label='Информация о студенте'
     >
-      <h2 className='about-project__heading'>Студент</h2>
+      <h2 className='student__heading'>Студент</h2>
       <div className='student__info'>
         <div className='student__text'>
           {/* <h3 className='student__name'>Алексей</h3>

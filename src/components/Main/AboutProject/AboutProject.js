@@ -28,20 +28,20 @@ const AboutProject = () => {
       </div>
       <div className='about-project__timebar'>
         <div className='about-project__backend'>
-          <div className='about-project__period about-project__w1'>
+          <span className='about-project__period about-project__w1'>
             1 неделя
-          </div>
-          <div className='about-project__period about-project__w-des'>
+          </span>
+          <span className='about-project__period about-project__w-des'>
             Back-end
-          </div>
+          </span>
         </div>
         <div className='about-project__frontend'>
-          <div className='about-project__period about-project__w4'>
+          <span className='about-project__period about-project__w4'>
             4 недели
-          </div>
-          <div className='about-project__period about-project__w-des'>
+          </span>
+          <span className='about-project__period about-project__w-des'>
             Front-end
-          </div>
+          </span>
         </div>
       </div>
     </section>

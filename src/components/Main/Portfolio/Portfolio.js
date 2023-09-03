@@ -11,8 +11,8 @@ const Portfolio = () => {
             rel='noreferrer'
           >
             Статичный сайт
+            <span>&#8599;</span>
           </a>
-          <span>&#8599;</span>
         </li>
         <li className='portfolio__link'>
           <a
@@ -22,8 +22,8 @@ const Portfolio = () => {
             rel='noreferrer'
           >
             Адаптивный сайт
+            <span>&#8599;</span>
           </a>
-          <span>&#8599;</span>
         </li>
         <li className='portfolio__link'>
           <a
@@ -33,8 +33,8 @@ const Portfolio = () => {
             rel='noreferrer'
           >
             Одностраничное приложение
+            <span>&#8599;</span>
           </a>
-          <span>&#8599;</span>
         </li>
       </ul>
     </section>

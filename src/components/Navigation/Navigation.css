@@ -59,10 +59,10 @@
     top: 0;
     left: 100%;
     height: 100vh;
-    width: 520px;
-    padding: 159px 0 0 0;
+    width: 68%;
+    padding: 162px 0 0 0;
     z-index: 4;
-    gap: 28px;
+    gap: 32px;
   }
 
   .navi__films {
@@ -75,19 +75,26 @@
   }
 
   .navi__links li:last-of-type {
-    margin-top: 593px;
+    margin-top: 589px;
+  }
+  .navi__user {
+    margin: 0;
   }
 }
 
 @media screen and (max-width: 320px) {
   .navi__links {
     width: 100%;
-    padding: 144px 0 0 0;
+    padding: 147px 0 0 0;
     z-index: 4;
-    gap: 24px;
+    gap: 28px;
   }
 
   .navi__links li:last-of-type {
-    margin-top: 420px;
+    margin-top: 416px;
+  }
+
+  .navi__user {
+    margin: 0;
   }
 }

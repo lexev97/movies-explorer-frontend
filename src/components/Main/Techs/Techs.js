@@ -5,7 +5,7 @@ const Techs = () => {
       id='techs'
       aria-label='Использованные технологии'
     >
-      <h2 className='about-project__heading'>Технологии</h2>
+      <h2 className='techs__heading'>Технологии</h2>
       <h3 className='techs__title'>7 технологий</h3>
       <p className='techs__description'>
         На курсе веб-разработки мы освоили технологии, которые применили в

@@ -6,7 +6,7 @@ const MoviesCardList = () => {
     <section className='cardlist' aria-label='Список фильмов'>
       <ul className='cardlist__grid'>
         {DUMMY_DATA.map((movie) => (
-          <MoviesCard key={movie.id} movie={movie} />
+          <MoviesCard key={movie._id} movie={movie} />
         ))}
       </ul>
       <button className='cardlist__more opacity08'>Ещё</button>

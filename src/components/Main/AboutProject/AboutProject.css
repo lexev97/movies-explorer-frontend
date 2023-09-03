@@ -59,7 +59,7 @@
 }
 
 .about-project__period {
-  padding: 9px 0;
+  padding: 10px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -95,7 +95,7 @@
   .about-project__description {
     font-size: 12px;
     line-height: 18px;
-    margin: 0 0 93px 0;
+    margin: 0 0 90px 0;
   }
 }
 
@@ -105,7 +105,8 @@
   }
 
   .about-project__duration {
-    gap: 56px;
+    gap: 58px;
+    padding: 62px 0 0 0;
   }
 
   .about-project__heading {
@@ -139,5 +140,6 @@
 
   .about-project__period {
     font-size: 11px;
+    padding: 11px 0;
   }
 }

@@ -51,6 +51,7 @@ const Navigation = () => {
         </li>
         <li>
           <button
+            type='button'
             className='navi__user opacity08'
             onClick={() => {
               closeBurgerMenu();

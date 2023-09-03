@@ -30,4 +30,8 @@
   .nav-tab__link {
     font-size: 11px;
   }
+
+  .nav-tab__links {
+    gap: 24px;
+  }
 }

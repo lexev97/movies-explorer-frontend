@@ -1,15 +1,15 @@
 import { Fragment, useState } from 'react';
 
 const Profile = (props) => {
-  const [isReadOnly, setIsReadOnly] = useState(true);
+  const [inputDisabled, setInputDisabled] = useState(true);
 
   const switchToEdit = () => {
-    setIsReadOnly(!isReadOnly);
+    setInputDisabled(!inputDisabled);
   };
 
   return (
-    <section className='profile' aria-label='Профиль пользователя'>
-      <h2 className='profile__heading'>Привет, Виталий!</h2>
+    <main className='profile' aria-label='Профиль пользователя'>
+      <h1 className='profile__heading'>Привет, Виталий!</h1>
       <form className='profile__form'>
         <label htmlFor='profile-name' className='profile__input-area'>
           <span className='profile__label'>Имя</span>
@@ -20,7 +20,9 @@ const Profile = (props) => {
             id='profile-name'
             className='profile__input'
             defaultValue='Виталий'
-            readOnly={isReadOnly}
+            placeholder='Алексей'
+            disabled={inputDisabled}
+            required
           />
         </label>
         <label htmlFor='profile-email' className='profile__input-area'>
@@ -30,10 +32,12 @@ const Profile = (props) => {
             id='profile-email'
             className='profile__input'
             defaultValue='pochta@yandex.ru'
-            readOnly={isReadOnly}
+            placeholder='email@example.com'
+            disabled={inputDisabled}
+            required
           />
         </label>
-        {isReadOnly ? (
+        {inputDisabled ? (
           <Fragment>
             <button
               type='button'
@@ -60,7 +64,7 @@ const Profile = (props) => {
           </button>
         )}
       </form>
-    </section>
+    </main>
   );
 };
 
