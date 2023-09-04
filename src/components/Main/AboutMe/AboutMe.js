@@ -1,3 +1,5 @@
+import student from '../../../images/student.jpg';
+
 const AboutMe = () => {
   return (
     <section
@@ -37,7 +39,13 @@ const AboutMe = () => {
             Github
           </a>
         </div>
-        <div className='student__image'></div>
+        <div className='student__image'>
+          <img
+            className='student__pic'
+            src={student}
+            alt='Фото студента'
+          ></img>
+        </div>
       </div>
     </section>
   );

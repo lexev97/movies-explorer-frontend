@@ -71,6 +71,7 @@
   }
   .techs__title {
     margin: 80px 0 22px 0;
+    word-break: break-word;
   }
   .techs__description {
     margin-bottom: 83px;
