@@ -1,17 +1,19 @@
 .footer {
-  margin: auto;
   box-sizing: border-box;
   display: flex;
+  width: 100%;
   max-width: 1280px;
   flex-direction: column;
   justify-content: flex-end;
   padding: 0 70px;
-  grid-row-start: -1;
+  flex-grow: 0;
+  align-self: center;
+  margin-top: auto;
 }
 
 .footer__title {
   margin: 0;
-  padding: 79px 0 20px 0;
+  padding: 113px 0 20px 0;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -51,6 +53,9 @@
   .footer {
     padding: 0 30px;
   }
+  .footer__title {
+    padding: 79px 0 20px 0;
+  }
 }
 
 @media screen and (max-width: 320px) {
@@ -60,7 +65,7 @@
 
   .footer__title {
     font-size: 12px;
-    padding: 58px 0 20px 0;
+    padding: 60px 0 20px 0;
   }
 
   .footer__bottom {

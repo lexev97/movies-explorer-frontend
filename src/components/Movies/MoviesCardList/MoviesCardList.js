@@ -9,7 +9,7 @@ const MoviesCardList = () => {
           <MoviesCard key={movie._id} movie={movie} />
         ))}
       </ul>
-      <button className='cardlist__more opacity08'>Ещё</button>
+      <button type='button' className='cardlist__more opacity08'>Ещё</button>
     </section>
   );
 };

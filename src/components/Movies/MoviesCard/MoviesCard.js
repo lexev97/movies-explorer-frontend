@@ -4,7 +4,7 @@ const MoviesCard = (props) => {
   return (
     <li className='card'>
       {props.movie.owner !== '777' ? (
-        <button className='card__save opacity08'>Сохранить</button>
+        <button type='button' className='card__save opacity08'>Сохранить</button>
       ) : (
         <div className='card__saved'></div>
       )}

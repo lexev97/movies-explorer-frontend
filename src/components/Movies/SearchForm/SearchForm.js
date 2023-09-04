@@ -2,7 +2,7 @@ import FilterCheckbox from './FilterCheckbox/FilterCheckbox';
 
 const SearchForm = () => {
   return (
-    <div className='search'>
+    <section className='search'>
       <form className='search__request'>
         <label className='search__input-area'>
           <span className='search__icon'></span>
@@ -19,7 +19,7 @@ const SearchForm = () => {
         <span className="search__border"></span>
         <FilterCheckbox />
       </form>
-    </div>
+    </section>
   );
 };
 

@@ -7,7 +7,7 @@ const MoviesCard = (props) => {
       <img
         src={props.movie.thumbnail}
         className='card__image'
-        alt='Кадр из фильма'
+        alt={props.movie.nameRU}
       ></img>
       <div className='card__description'>
         <h2 className='card__name'>{props.movie.nameRU}</h2>

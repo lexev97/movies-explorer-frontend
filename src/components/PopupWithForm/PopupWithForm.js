@@ -4,7 +4,7 @@ import LogoIcon from '../Svg/LogoIcon';
 const PopupWithForm = (props) => {
   return (
     <main className={`popup`} aria-label='Модальное окно'>
-      <div className='popup__wrapper'>
+      <section className='popup__wrapper'>
         <LogoIcon />
         <h1 className='popup__title'>{props.title}</h1>
         <form
@@ -28,7 +28,7 @@ const PopupWithForm = (props) => {
             {props.name === 'login' ? 'Регистрация' : 'Войти'}
           </Link>
         </div>
-      </div>
+      </section>
     </main>
   );
 };

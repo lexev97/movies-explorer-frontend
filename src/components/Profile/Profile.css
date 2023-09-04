@@ -1,7 +1,11 @@
 .profile {
   max-width: 1280px;
-  margin: auto;
   padding: 74px 0 70px 0;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.profile__wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -141,5 +145,13 @@
 
   .profile__input-area:last-of-type {
     margin: 0 0 363px 0;
+  }
+
+  .profile__edit {
+    font-size: 12px;
+  }
+  
+  .profile__exit {
+    font-size: 12px;
   }
 }

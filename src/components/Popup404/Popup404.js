@@ -5,13 +5,13 @@ const Popup404 = (props) => {
 
   return (
     <main className={`popup`} aria-label='Модальное окно'>
-      <div className='popup404'>
+      <section className='popup404'>
         <h1 className='popup404__title'>404</h1>
         <p className='popup404__subtitle'>Страница не найдена</p>
         <Link className='popup404__link opacity07' to={navigate(-1)}>
           Назад
         </Link>
-      </div>
+      </section>
     </main>
   );
 };

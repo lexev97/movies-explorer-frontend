@@ -101,8 +101,9 @@
   }
 
   .student__image {
-    width: 255px;
-    height: 307px;
+    flex-grow: 1;
+    max-width: 255px;
+    max-height: 307px;
   }
 }
 
