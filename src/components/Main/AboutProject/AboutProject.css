@@ -1,0 +1,152 @@
+.about-project {
+  padding: 110px 70px;
+}
+
+.about-project__heading {
+  width: 100%;
+  padding: 0 0 23px 0;
+  text-align: start;
+  margin: 0;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  border-bottom: 1px solid black;
+}
+
+.about-project__duration {
+  display: flex;
+  width: 100%;
+  padding: 70px 0 0 0;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.about-project__thesis {
+  flex: 1 1 200px;
+  width: 50%;
+}
+
+.about-project__title {
+  margin: 0 0 26px 0;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.8px;
+}
+
+.about-project__description {
+  margin: 0 0 110px 0;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.about-project__timebar {
+  display: flex;
+  width: 100%;
+}
+
+.about-project__backend {
+  flex-basis: 228px;
+}
+
+.about-project__frontend {
+  flex-grow: 1;
+}
+
+.about-project__period {
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.about-project__w1 {
+  background-color: black;
+  color: white;
+}
+
+.about-project__w4 {
+  background-color: #f2f2f2;
+}
+
+.about-project__w-des {
+  color: #a0a0a0;
+  padding: 14px 0 0 0;
+}
+
+@media screen and (max-width: 768px) {
+  .about-project {
+    padding: 90px 50px;
+  }
+
+  .about-project__backend {
+    flex-basis: 140px;
+  }
+
+  .about-project__description {
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0 0 92px 0;
+  }
+
+  .about-project__duration {
+    gap: 31px;
+  }
+  .about-project__title {
+    margin: 0 0 24px 0;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about-project {
+    padding: 70px 18px;
+  }
+
+  .about-project__duration {
+    gap: 58px;
+    padding: 62px 0 0 0;
+  }
+
+  .about-project__heading {
+    padding: 0 0 28px 0;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.72px;
+  }
+
+  .about-project__title {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    margin: 0 0 16px 0;
+  }
+
+  .about-project__description {
+    margin: 0;
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .about-project__thesis:last-child {
+    padding-bottom: 60px;
+  }
+
+  .about-project__backend {
+    flex-basis: 100px;
+  }
+
+  .about-project__period {
+    font-size: 11px;
+    padding: 11px 0;
+  }
+}

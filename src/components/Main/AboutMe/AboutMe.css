@@ -1,0 +1,157 @@
+.student {
+  padding: 112px 70px 100px 70px;
+}
+
+.student__heading {
+  width: 100%;
+  padding: 0 0 23px 0;
+  text-align: start;
+  margin: 0;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  border-bottom: 1px solid black;
+}
+
+.student__info {
+  padding: 66px 0 0 0;
+  display: flex;
+  gap: 50px;
+  justify-content: space-between;
+}
+
+.student__text {
+  max-width: 595px;
+  flex: 1 1 100px;
+}
+
+.student__name {
+  margin: 0 0 19px 0;
+  padding: 0;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: -2px;
+}
+
+.student__profession {
+  margin: 0 0 25px 0;
+  padding: 0;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  font-feature-settings: 'clig' off, 'liga' off;
+}
+
+.student__about {
+  margin: 0 0 99px 0;
+  padding: 0;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.student__image {
+  position: relative;
+  border-radius: 10px;
+  max-width: 270px;
+  max-height: 327px;
+  height: 100%;
+  overflow: hidden;
+}
+
+.student__pic {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.student__github {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+@media screen and (max-width: 768px) {
+  .student {
+    padding: 90px 50px;
+  }
+
+  .student__name {
+    margin: 0 0 16px 0;
+    font-size: 40px;
+    line-height: 40px;
+    letter-spacing: -1.6px;
+  }
+
+  .student__profession {
+    margin: 0 0 20px 0;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+  }
+
+  .student__about {
+    margin: 0 0 87px 0;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .student__image {
+    max-width: 255px;
+    max-height: 307px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .student__info {
+    display: flex;
+    flex-direction: column-reverse;    
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .student {
+    padding: 71px 14px;
+  }
+
+  .student__heading {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    padding: 0 0 28px 0;
+  }
+
+  .student__info {
+    padding: 60px 0 0 0;
+    gap: 38px;
+  }
+  .student__image {
+    max-width: 292px;
+    max-height: 352px;
+  }
+
+  .student__name {
+    margin: 0 0 18px 0;
+    font-size: 30px;
+    letter-spacing: -1.2px;
+  }
+
+  .student__profession {
+    font-size: 11px;
+    line-height: 16px;
+    margin: 0 0 20px 0;
+  }
+
+  .student__about {
+    margin: 0 0 39px 0;
+    font-size: 11px;
+    line-height: 16px;
+  }
+}

@@ -1,0 +1,45 @@
+html {
+  font-family: 'Inter', Arial, sans-serif;
+  scroll-behavior: smooth;
+}
+
+html, body {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.page {
+  box-sizing: border-box;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.opacity07 {
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.opacity07:hover {
+  opacity: 0.7;
+}
+
+.opacity08 {
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.opacity08 svg {
+  vertical-align: middle;
+}
+
+.opacity08:hover {
+  opacity: 0.8;
+}
+
+.link {
+  text-decoration: inherit;
+  color: inherit;
+}

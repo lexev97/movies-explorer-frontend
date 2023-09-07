@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  align-items: center;
+  height: 74px;
+  box-sizing: border-box;
+  padding: 0 70px;
+  justify-content: space-between;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  flex-grow: 0;
+}
+
+.header_color_pink {
+  background-color: #f3c1f8;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    padding: 0 14px;
+  }
+}

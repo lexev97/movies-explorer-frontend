@@ -1,0 +1,50 @@
+.auth-area {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.auth-area__reg {
+  text-decoration: none;
+  color: #000;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.auth-area__log {
+  background-color: black;
+  padding: 8px 20px;
+  border-radius: 3px;
+  border: none;
+  color: #fff;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+@media screen and (max-width: 320px) {
+  .auth-area {
+    gap: 14px;
+  }
+
+  .auth-area__reg {
+    font-size: 10px;
+    line-height: 16px;
+  }
+
+  .auth-area__log {
+    font-size: 10px;
+    line-height: 16px;
+    padding: 5px 12px;
+  }
+}

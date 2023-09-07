@@ -1,0 +1,51 @@
+.popup404 {
+  display: flex;
+  flex-direction: column;
+  max-width: 396px;
+  width: 100%;
+  align-items: center;
+}
+
+.popup404__title {
+  margin: 176px auto 0 auto;
+  padding: 0;
+  text-align: center;
+  font-size: 140px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.popup404__subtitle {
+  margin: 0 0 184px 0;
+  padding: 0;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.popup404__link {
+  color: #000;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 320px) {
+  .popup404__title {
+    margin: 273px auto 10px auto;
+     font-size: 80px;
+  }
+  .popup404__subtitle{
+    font-size: 12px;
+    margin: 0 0 285px 0;
+  }
+  .popup404__link {
+    font-size: 12px;
+  }
+}
