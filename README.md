@@ -28,7 +28,7 @@ JavaScript, ReactJS, ReactRouter, HTML5, CSS3, БЭМ, flex, WebPack, Babel, JSO
 - Переход на TS
 
 ## Сайт
-https://api.ypdiploma.nomoreparties.co
+https://ypdiploma.nomoreparties.co
 
 ## Макет
 Light-4 (Розовый)
