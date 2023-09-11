@@ -6,6 +6,7 @@
 * [Планируемые дополнения](#планируемые-дополнения)
 * [Сайт](#сайт)
 * [Макет](#макет)
+* [Pool-request](#Pool-request)
 <br>
 
 ## Описание
@@ -32,3 +33,6 @@ ypdiploma.nomoreparties.co
 
 ## Сайт
 Light-4 (Розовый)
+
+## Pool-request
+https://github.com/lexev97/movies-explorer-frontend/pull/22
