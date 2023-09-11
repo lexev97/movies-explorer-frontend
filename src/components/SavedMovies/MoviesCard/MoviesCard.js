@@ -1,11 +1,18 @@
 import { getHourTimeFormat } from '../../../utils/utils';
 
 const MoviesCard = (props) => {
+  const handleDeleteButton = () => {
+    props.onDelete(props.movie.movieId);
+  };
+
   return (
     <li className='card'>
-      <div className='card__delete opacity08'></div>
+      <div
+        onClick={handleDeleteButton}
+        className='card__delete opacity08'
+      ></div>
       <img
-        src={props.movie.thumbnail}
+        src={props.movie.image}
         className='card__image'
         alt={props.movie.nameRU}
       ></img>

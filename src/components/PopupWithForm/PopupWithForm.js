@@ -13,7 +13,16 @@ const PopupWithForm = (props) => {
           onSubmit={props.onSubmit}
         >
           {props.children}
-          <button type='submit' className='popup__save opacity08'>
+          {props.serverErrorMsg && (
+            <span className='popup__server-error'>{props.serverErrorMsg}</span>
+          )}
+          <button
+            type='submit'
+            className={`popup__save ${
+              !props.buttonIsDisabled ? '' : 'opacity08'
+            } ${props.serverErrorMsg ? 'popup__save_server-error' : ''}`}
+            disabled={!props.buttonIsDisabled}
+          >
             {props.buttonText}
           </button>
         </form>
