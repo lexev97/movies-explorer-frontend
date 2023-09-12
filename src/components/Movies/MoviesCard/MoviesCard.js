@@ -27,11 +27,13 @@ const MoviesCard = (props) => {
       ) : (
         <div className='card__saved' onClick={handleDeleteButton}></div>
       )}
-      <img
-        src={moviesApiDomine + props.movie.image.url}
-        className='card__image'
-        alt={props.movie.nameRU}
-      ></img>
+      <a href={props.movie.trailerLink} target='blank'>
+        <img
+          src={moviesApiDomine + props.movie.image.url}
+          className='card__image'
+          alt={props.movie.nameRU}
+        ></img>
+      </a>
       <div className='card__description'>
         <h2 className='card__name'>{props.movie.nameRU}</h2>
         <span className='card__duration'>

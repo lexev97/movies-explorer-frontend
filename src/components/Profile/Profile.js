@@ -10,14 +10,16 @@ const Profile = () => {
   const [inputDisabled, setInputDisabled] = useState(true);
   const [nameInput, setNameInput] = useState(appCtx.userInfo.name);
   const [nameInputError, setNameInputError] = useState();
-  const [emailInput, setEmailInput] = useState();
+  const [emailInput, setEmailInput] = useState(appCtx.userInfo.email);
   const [emailInputError, setEmailInputError] = useState();
   const [serverErrorMsg, setServerErrorMsg] = useState();
+  const [isEdit, setIsEdit] = useState(false)
 
   const navigate = useNavigate();
 
   const switchToEdit = () => {
-    setInputDisabled(!inputDisabled);
+    setInputDisabled(false);
+    setIsEdit(true);
   };
 
   const handleOnChangeNameInput = (e) => {
@@ -41,8 +43,10 @@ const Profile = () => {
       );
       return;
     }
+
     setNameInputError(null);
-  };
+    if (!emailInputError) setEmailInputError(null);
+  };  
   const handleOnChangeEmailInput = (e) => {
     setEmailInput(e.target.value);
 
@@ -57,11 +61,13 @@ const Profile = () => {
       return;
     }
     setEmailInputError(null);
+    if (nameInputError) setNameInputError(null);
   };
 
   const handleChangeProfileSubmit = (e) => {
     e.preventDefault();
     setServerErrorMsg('Сохраняем...');
+    setInputDisabled(true);
     const newProfileInfo = {
       name: nameInput,
       email: emailInput,
@@ -76,12 +82,13 @@ const Profile = () => {
           setTimeout(() => {
             setServerErrorMsg();
           }, 3000);
-          switchToEdit();
+          setIsEdit(false);
         } else {
           return Promise.reject(res);
         }
       })
       .catch((err) => {
+        setInputDisabled(false);
         setServerErrorMsg('Что-то пошло не так...');
       });
   };
@@ -102,10 +109,10 @@ const Profile = () => {
   };
 
   const buttonDisabled =
-    nameInputError === null &&
-    emailInputError === null &&
     (nameInput !== appCtx.userInfo.name ||
-      emailInput !== appCtx.userInfo.email);
+      emailInput !== appCtx.userInfo.email) &&
+    nameInputError === null &&
+    emailInputError === null && !inputDisabled;
 
   return (
     <main className='profile'>
@@ -120,7 +127,7 @@ const Profile = () => {
               className={`profile__input ${
                 nameInputError ? 'profile__input_error' : ''
               }`}
-              value={nameInput || appCtx.userInfo.name}
+              value={nameInput || ''}
               onChange={handleOnChangeNameInput}
               placeholder='Алексей'
               disabled={inputDisabled}
@@ -138,7 +145,7 @@ const Profile = () => {
               className={`profile__input ${
                 emailInputError ? 'profile__input_error' : ''
               }`}
-              value={emailInput || appCtx.userInfo.email}
+              value={emailInput || ''}
               onChange={handleOnChangeEmailInput}
               placeholder='email@example.com'
               disabled={inputDisabled}
@@ -151,7 +158,7 @@ const Profile = () => {
           {serverErrorMsg && (
             <span className='profile__server-error'>{serverErrorMsg}</span>
           )}
-          {inputDisabled ? (
+          {!isEdit ? (
             <Fragment>
               <button
                 type='button'

@@ -4,7 +4,12 @@ import AppContext from '../../../contexts/AppContext';
 import mainApi from '../../../utils/MainApi';
 
 const MoviesCardList = () => {
-  const appCtx = useContext(AppContext);  
+  const appCtx = useContext(AppContext);
+
+  useEffect(() => {
+    appCtx.getSearchResultsMsg();
+    appCtx.getFoundSavedMovies([]);
+  }, []);
 
   useEffect(() => {
     if (appCtx.foundSavedMovies.length > 0) {
@@ -27,7 +32,6 @@ const MoviesCardList = () => {
     ));
     appCtx.getRenderedCards(cardSet);
   }, [appCtx.foundSavedMovies, appCtx.savedMovies]);
-
 
   const handleDeleteCardClick = (movieId) => {
     const movieToDelete = appCtx.savedMovies.find(

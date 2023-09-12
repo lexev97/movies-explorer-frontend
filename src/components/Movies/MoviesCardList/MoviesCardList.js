@@ -4,7 +4,7 @@ import { useResize } from '../../../hooks/useResize';
 import Preloader from '../Preloader/Preloader';
 import AppContext from '../../../contexts/AppContext';
 import mainApi from '../../../utils/MainApi';
-import { moviesApiDomine } from '../../../constants/constants';
+import { L_CARDS, L_ROW_CARDS, M_CARDS, M_ROW_CARDS, S_CARDS, moviesApiDomine } from '../../../constants/constants';
 
 const MoviesCardList = () => {
   const appCtx = useContext(AppContext);
@@ -23,11 +23,11 @@ const MoviesCardList = () => {
     if (isScreenL) {
       if (appCtx.renderedCards.length > 0) {
         if (
-          appCtx.renderedCards.length % 3 === 0 ||
-          appCtx.renderedCards.length < 12
+          appCtx.renderedCards.length % L_ROW_CARDS === 0 ||
+          appCtx.renderedCards.length < L_CARDS
         )
           return;
-        restToRow = 3 - (appCtx.renderedCards.length % 3);
+        restToRow = L_ROW_CARDS - (appCtx.renderedCards.length % L_ROW_CARDS);
 
         const additionalCardSet = appCtx.foundMovies
           .slice(
@@ -46,7 +46,7 @@ const MoviesCardList = () => {
         return;
       }
       cardSet = appCtx.foundMovies
-        .slice(appCtx.renderedCards.length, 12)
+        .slice(appCtx.renderedCards.length, L_CARDS)
         .map((movie) => (
           <MoviesCard
             key={movie.id}
@@ -58,11 +58,11 @@ const MoviesCardList = () => {
     } else if (isScreenM) {
       if (appCtx.renderedCards.length > 0) {
         if (
-          appCtx.renderedCards.length % 2 === 0 ||
-          appCtx.renderedCards.length < 8
+          appCtx.renderedCards.length % M_ROW_CARDS === 0 ||
+          appCtx.renderedCards.length < M_CARDS
         )
           return;
-        restToRow = 2 - (appCtx.renderedCards.length % 2);
+        restToRow = M_ROW_CARDS - (appCtx.renderedCards.length % M_ROW_CARDS);
 
         const additionalCardSet = appCtx.foundMovies
           .slice(
@@ -81,7 +81,7 @@ const MoviesCardList = () => {
         return;
       }
       cardSet = appCtx.foundMovies
-        .slice(0, 8)
+        .slice(0, M_CARDS)
         .map((movie) => (
           <MoviesCard
             key={movie.id}
@@ -95,7 +95,7 @@ const MoviesCardList = () => {
         return;
       }
       cardSet = appCtx.foundMovies
-        .slice(0, 5)
+        .slice(0, S_CARDS)
         .map((movie) => (
           <MoviesCard
             key={movie.id}
@@ -131,46 +131,6 @@ const MoviesCardList = () => {
     }
   }, [isDeleting]);
 
-  const handleMoreClick = () => {
-    let additionalCardSet = [];
-    if (isScreenL) {
-      additionalCardSet = appCtx.foundMovies
-        .slice(appCtx.renderedCards.length, appCtx.renderedCards.length + 3)
-        .map((movie) => (
-          <MoviesCard
-            key={movie.id}
-            movie={movie}
-            onSave={handleSaveCardClick}
-          />
-        ));
-    } else if (isScreenM) {
-      additionalCardSet = appCtx.foundMovies
-        .slice(appCtx.renderedCards.length, appCtx.renderedCards.length + 2)
-        .map((movie) => (
-          <MoviesCard
-            key={movie.id}
-            movie={movie}
-            onSave={handleSaveCardClick}
-          />
-        ));
-    } else if (isScreenS) {
-      additionalCardSet = appCtx.foundMovies
-        .slice(appCtx.renderedCards.length, appCtx.renderedCards.length + 2)
-        .map((movie) => (
-          <MoviesCard
-            key={movie.id}
-            movie={movie}
-            onSave={handleSaveCardClick}
-          />
-        ));
-    }
-
-    const lastSearch = JSON.parse(localStorage.getItem('lastSearch'));
-    lastSearch.renderedCards = [...appCtx.renderedCards, ...additionalCardSet];
-    localStorage.setItem('lastSearch', JSON.stringify(lastSearch));
-    appCtx.updateRenderedCards(additionalCardSet);
-  };
-
   const handleSaveCardClick = (movie) => {
     mainApi
       .addMovie({
@@ -180,7 +140,7 @@ const MoviesCardList = () => {
         year: movie.year,
         description: movie.description,
         image: moviesApiDomine + movie.image.url,
-        trailerLink: moviesApiDomine + movie.trailerLink,
+        trailerLink: movie.trailerLink,
         nameRU: movie.nameRU,
         nameEN: movie.nameEN,
         thumbnail: moviesApiDomine + movie.image.formats.thumbnail.url,
@@ -200,6 +160,46 @@ const MoviesCardList = () => {
 
   const handleDeleteCardClick = (movieId) => {
     setIsDeleting(movieId);
+  };
+
+  const handleMoreClick = () => {
+    let additionalCardSet = [];
+    if (isScreenL) {
+      additionalCardSet = appCtx.foundMovies
+        .slice(appCtx.renderedCards.length, appCtx.renderedCards.length + L_ROW_CARDS)
+        .map((movie) => (
+          <MoviesCard
+            key={movie.id}
+            movie={movie}
+            onSave={handleSaveCardClick}
+          />
+        ));
+    } else if (isScreenM) {
+      additionalCardSet = appCtx.foundMovies
+        .slice(appCtx.renderedCards.length, appCtx.renderedCards.length + M_ROW_CARDS)
+        .map((movie) => (
+          <MoviesCard
+            key={movie.id}
+            movie={movie}
+            onSave={handleSaveCardClick}
+          />
+        ));
+    } else if (isScreenS) {
+      additionalCardSet = appCtx.foundMovies
+        .slice(appCtx.renderedCards.length, appCtx.renderedCards.length + M_ROW_CARDS)
+        .map((movie) => (
+          <MoviesCard
+            key={movie.id}
+            movie={movie}
+            onSave={handleSaveCardClick}
+          />
+        ));
+    }
+
+    const lastSearch = JSON.parse(localStorage.getItem('lastSearch'));
+    lastSearch.renderedCards = [...appCtx.renderedCards, ...additionalCardSet];
+    localStorage.setItem('lastSearch', JSON.stringify(lastSearch));
+    appCtx.updateRenderedCards(additionalCardSet);
   };
 
   return (

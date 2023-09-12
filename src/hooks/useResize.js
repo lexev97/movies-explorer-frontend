@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { M_RES, S_RES } from '../constants/constants';
 
 export const useResize = () => {
   const [width, setWidth] = useState(window.innerWidth);
@@ -14,8 +15,8 @@ export const useResize = () => {
   }, []);
 
   return {
-    isScreenS: width <= 480,
-    isScreenM: width > 480 && width <= 768,
-    isScreenL: width > 768,
+    isScreenS: width <= S_RES,
+    isScreenM: width > S_RES && width <= M_RES,
+    isScreenL: width > M_RES,
   };
 };

@@ -11,6 +11,7 @@ const Login = () => {
   const [passwordInput, setPasswordInput] = useState('');
   const [passwordInputError, setPasswordInputError] = useState();
   const [serverErrorMsg, setServerErrorMsg] = useState();
+  const [formIsDisabled, setFormIsDisabled] = useState(false);
 
   const appCtx = useContext(AppContext);
   const navigate = useNavigate();
@@ -45,6 +46,7 @@ const Login = () => {
   const handleSubmitButton = (e) => {
     e.preventDefault();
     setServerErrorMsg('Проверяем данные...');
+    setFormIsDisabled(true);
     const userData = {
       email: emailInput,
       password: passwordInput,
@@ -55,13 +57,16 @@ const Login = () => {
       .then((res) => {
         if (res.message === 'Авторизация прошла успешно!') {
           setServerErrorMsg();
+          localStorage.setItem('isLoggedIn', "true")
           appCtx.login();
+          setFormIsDisabled(false);
           navigate('/movies', { replace: true });
         } else {
           return Promise.reject(res);
         }
       })
       .catch((err) => {
+        setFormIsDisabled(false);
         setServerErrorMsg('При авторизации пользователя произошла ошибка.');
       });
   };
@@ -71,7 +76,8 @@ const Login = () => {
       name='login'
       title='Рады видеть!'
       buttonText='Войти'
-      buttonIsDisabled={emailInputError === null && passwordInputError === null}
+          disabled={formIsDisabled}
+      buttonIsDisabled={emailInputError === null && passwordInputError === null && !formIsDisabled}
       serverErrorMsg={serverErrorMsg}
       onSubmit={handleSubmitButton}
     >
@@ -87,6 +93,7 @@ const Login = () => {
           value={emailInput}
           onChange={handleOnChangeEmailInput}
           noValidate
+          disabled={formIsDisabled}
         />
         {emailInputError && (
           <span className='popup__error'>{emailInputError}</span>
@@ -105,6 +112,7 @@ const Login = () => {
           value={passwordInput}
           onChange={handleOnChangePasswordInput}
           noValidate
+          disabled={formIsDisabled}
         />
         {passwordInputError && (
           <span className='popup__error'>{passwordInputError}</span>

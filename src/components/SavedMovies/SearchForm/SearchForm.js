@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import InputValidator from '../../../utils/InputValidator';
 import FilterCheckbox from './FilterCheckbox/FilterCheckbox';
 import AppContext from '../../../contexts/AppContext';
+import { SHORT_MOVIE_TIME } from '../../../constants/constants';
 
 const SearchForm = () => {
   const [searchInput, setSearchInput] = useState();
@@ -19,12 +20,12 @@ const SearchForm = () => {
     }
 
     appCtx.clearRenderedCards();
-    const searchRegExp = new RegExp(`${searchInput}`, 'gi');
     appCtx.getSearchResultsMsg(null);
     const foundMovies = appCtx.savedMovies.filter(
       (item) =>
-        (searchRegExp.test(item.nameRU) || searchRegExp.test(item.nameEN)) &&
-        (filterStatus ? item.duration <= 40 : item.duration > 0)
+        (item.nameRU.includes(searchInput.toLowerCase()) ||
+          item.nameEN.includes(searchInput.toLowerCase())) &&
+        (filterStatus ? item.duration <= SHORT_MOVIE_TIME : item.duration > 0)
     );
     if (foundMovies.length === 0) {
       appCtx.getSearchResultsMsg('Ничего не найдено');
@@ -43,7 +44,7 @@ const SearchForm = () => {
       appCtx.clearRenderedCards();
       appCtx.getSearchResultsMsg(null);
       const foundMovies = appCtx.savedMovies.filter((item) =>
-        e.target.checked ? item.duration <= 40 : item.duration > 0
+        e.target.checked ? item.duration <= SHORT_MOVIE_TIME : item.duration > 0
       );
       if (foundMovies.length === 0) {
         appCtx.getSearchResultsMsg('Ничего не найдено');
@@ -54,12 +55,12 @@ const SearchForm = () => {
     }
     if (appCtx.savedMovies.length > 0) {
       appCtx.clearRenderedCards();
-      const searchRegExp = new RegExp(`${searchInput}`, 'gi');
       appCtx.getSearchResultsMsg(null);
       const foundMovies = appCtx.savedMovies.filter(
         (item) =>
-          (searchRegExp.test(item.nameRU) || searchRegExp.test(item.nameEN)) &&
-          (e.target.checked ? item.duration <= 40 : item.duration > 0)
+          (item.nameRU.includes(searchInput.toLowerCase()) ||
+            item.nameEN.includes(searchInput.toLowerCase())) &&
+          (e.target.checked ? item.duration <= SHORT_MOVIE_TIME : item.duration > 0)
       );
       if (foundMovies.length === 0) {
         appCtx.getSearchResultsMsg('Ничего не найдено');

@@ -13,6 +13,7 @@ const Register = () => {
   const [passwordInput, setPasswordInput] = useState('');
   const [passwordInputError, setPasswordInputError] = useState();
   const [serverErrorMsg, setServerErrorMsg] = useState();
+  const [formIsDisabled, setFormIsDisabled] = useState(false);
 
   const appCtx = useContext(AppContext);
   const navigate = useNavigate();
@@ -71,6 +72,7 @@ const Register = () => {
   const handleSubmitButton = (e) => {
     e.preventDefault();
     setServerErrorMsg('Создаем пользователя...');
+    setFormIsDisabled(true);
     const userData = {
       name: nameInput,
       email: emailInput,
@@ -92,13 +94,16 @@ const Register = () => {
       .then((res) => {
         if (res.message === 'Авторизация прошла успешно!') {
           setServerErrorMsg();
+          localStorage.setItem('isLoggedIn', 'true');
           appCtx.login();
+          setFormIsDisabled(false);
           navigate('/movies', { replace: true });
         } else {
           return Promise.reject(res);
         }
       })
       .catch((err) => {
+        setFormIsDisabled(false);
         setServerErrorMsg('При регистрации пользователя произошла ошибка.');
       });
   };
@@ -111,7 +116,8 @@ const Register = () => {
       buttonIsDisabled={
         nameInputError === null &&
         emailInputError === null &&
-        passwordInputError === null
+        passwordInputError === null &&
+        !formIsDisabled
       }
       serverErrorMsg={serverErrorMsg}
       onSubmit={handleSubmitButton}
@@ -129,6 +135,7 @@ const Register = () => {
           value={nameInput}
           onChange={handleOnChangeNameInput}
           noValidate
+          disabled={formIsDisabled}
         />
         {nameInputError && (
           <span className='popup__error'>{nameInputError}</span>
@@ -146,6 +153,7 @@ const Register = () => {
           value={emailInput}
           onChange={handleOnChangeEmailInput}
           noValidate
+          disabled={formIsDisabled}
         />
         {emailInputError && (
           <span className='popup__error'>{emailInputError}</span>
@@ -164,6 +172,7 @@ const Register = () => {
           value={passwordInput}
           onChange={handleOnChangePasswordInput}
           noValidate
+          disabled={formIsDisabled}
         />
         {passwordInputError && (
           <span className='popup__error'>{passwordInputError}</span>

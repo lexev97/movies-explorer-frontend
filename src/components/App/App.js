@@ -18,7 +18,9 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    tokenCheck();
+    if (!appCtx.isLoggedIn) {
+      tokenCheck();
+    }
   }, []);
 
   useEffect(() => {
@@ -65,6 +67,7 @@ function App() {
       .getUserinfo()
       .then((res) => {
         if (res.data._id) {
+          localStorage.setItem('isLoggedIn', 'true');
           appCtx.login();
         } else {
           return Promise.reject(res);
@@ -96,22 +99,25 @@ function App() {
     <Fragment>
       {headerIsVisible && <Header />}
       <Routes>
-        <Route path='/' element={<Main />} />
         <Route
+          exact
           path='/movies'
           element={<ProtectedRouteElement element={Movies} />}
         />
         <Route
+          exact
           path='/saved-movies'
           element={<ProtectedRouteElement element={SavedMovies} />}
         />
         <Route
+          exact
           path='/profile'
           element={<ProtectedRouteElement element={Profile} />}
         />
         <Route path='/signin' element={<Login />} />
         <Route path='/signup' element={<Register />} />
-        <Route path='/*' element={<Popup404 />} />
+        <Route exact path='*' element={<Popup404 />} />
+        <Route path='/' element={<Main />} />
       </Routes>
       {footerIsVisible && <Footer />}
     </Fragment>

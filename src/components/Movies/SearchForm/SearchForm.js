@@ -3,11 +3,13 @@ import InputValidator from '../../../utils/InputValidator';
 import FilterCheckbox from './FilterCheckbox/FilterCheckbox';
 import moviesApi from '../../../utils/MoviesApi';
 import AppContext from '../../../contexts/AppContext';
+import { SHORT_MOVIE_TIME } from '../../../constants/constants';
 
 const SearchForm = () => {
   const [searchInput, setSearchInput] = useState();
   const [inputError, setInputError] = useState(null);
   const [filterStatus, setFilterStatus] = useState(false);
+  const [formIsDisabled, setFormIsDisabled] = useState(false);
 
   const appCtx = useContext(AppContext);
 
@@ -15,6 +17,7 @@ const SearchForm = () => {
     const lastSearch = JSON.parse(localStorage.getItem('lastSearch'));
     if (lastSearch) {
       appCtx.onIsLoading();
+      setFormIsDisabled(true);
       setFilterStatus(lastSearch.filterStatus);
       setSearchInput(lastSearch.searchRequest);
       moviesApi
@@ -28,12 +31,14 @@ const SearchForm = () => {
               appCtx.getSearchResultsMsg('Ничего не найдено');
             }
             appCtx.getFoundMovies(foundMovies);
+            setFormIsDisabled(false);
             appCtx.offIsLoading();
           } else {
             return Promise.reject(res);
           }
         })
         .catch((err) => {
+          setFormIsDisabled(false);
           appCtx.offIsLoading();
           appCtx.getSearchResultsMsg(
             'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
@@ -55,44 +60,74 @@ const SearchForm = () => {
 
     appCtx.clearRenderedCards();
     appCtx.getSearchResultsMsg(null);
-    const searchRegExp = new RegExp(`${searchInput}`, 'gi');
+
     appCtx.onIsLoading();
+    setFormIsDisabled(true);
+    let foundMovies = [];
+    if (appCtx.movies.length === 0) {
+      moviesApi
+        .getMovies()
+        .then((res) => {
+          if (res[0].id) {
+            appCtx.getMovies(res);
+            foundMovies = res.filter(
+              (item) =>
+                (item.nameRU.includes(searchInput.toLowerCase()) ||
+                  item.nameEN.includes(searchInput.toLowerCase())) &&
+                (filterStatus
+                  ? item.duration <= SHORT_MOVIE_TIME
+                  : item.duration > 0)
+            );
+            if (foundMovies.length === 0) {
+              appCtx.getSearchResultsMsg('Ничего не найдено');
+            }
+            appCtx.getFoundMovies(foundMovies);
 
-    moviesApi
-      .getMovies()
-      .then((res) => {
-        if (res[0].id) {
-          appCtx.getMovies(res);
-          const foundMovies = res.filter(
-            (item) =>
-              (searchRegExp.test(item.nameRU) ||
-                searchRegExp.test(item.nameEN)) &&
-              (filterStatus ? item.duration <= 40 : item.duration > 0)
-          );
-          if (foundMovies.length === 0) {
-            appCtx.getSearchResultsMsg('Ничего не найдено');
+            localStorage.setItem(
+              'lastSearch',
+              JSON.stringify({
+                searchRequest: searchInput,
+                filterStatus: e.target[2].checked,
+                searchResult: foundMovies,
+              })
+            );
+            setFormIsDisabled(false);
+            appCtx.offIsLoading();
+          } else {
+            return Promise.reject(res);
           }
-          appCtx.getFoundMovies(foundMovies);
-
-          localStorage.setItem(
-            'lastSearch',
-            JSON.stringify({
-              searchRequest: searchInput,
-              filterStatus: e.target[2].checked,
-              searchResult: foundMovies,
-            })
-          );
+        })
+        .catch((err) => {
+          setFormIsDisabled(false);
           appCtx.offIsLoading();
-        } else {
-          return Promise.reject(res);
-        }
+          appCtx.getSearchResultsMsg(
+            'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
+          );
+        });
+
+      return;
+    }
+    foundMovies = appCtx.movies.filter(
+      (item) =>
+        (item.nameRU.includes(searchInput.toLowerCase()) ||
+          item.nameEN.includes(searchInput.toLowerCase())) &&
+        (filterStatus ? item.duration <= SHORT_MOVIE_TIME : item.duration > 0)
+    );
+    if (foundMovies.length === 0) {
+      appCtx.getSearchResultsMsg('Ничего не найдено');
+    }
+    appCtx.getFoundMovies(foundMovies);
+
+    localStorage.setItem(
+      'lastSearch',
+      JSON.stringify({
+        searchRequest: searchInput,
+        filterStatus: e.target[2].checked,
+        searchResult: foundMovies,
       })
-      .catch((err) => {
-        appCtx.offIsLoading();
-        appCtx.getSearchResultsMsg(
-          'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
-        );
-      });
+    );
+    setFormIsDisabled(false);
+    appCtx.offIsLoading();
   };
 
   const handleOnChangeInput = (e) => {
@@ -102,20 +137,29 @@ const SearchForm = () => {
     }
   };
   const handleOnChangeFilter = (e) => {
+    let foundMovies = [];
     if (appCtx.movies.length > 0) {
       appCtx.clearRenderedCards();
-      const searchRegExp = new RegExp(`${searchInput}`, 'gi');
       appCtx.getSearchResultsMsg(null);
-      const foundMovies = appCtx.movies.filter(
+      foundMovies = appCtx.movies.filter(
         (item) =>
-          (searchRegExp.test(item.nameRU) || searchRegExp.test(item.nameEN)) &&
-          (e.target.checked ? item.duration <= 40 : item.duration > 0)
+          (item.nameRU.includes(searchInput.toLowerCase()) ||
+            item.nameEN.includes(searchInput.toLowerCase())) &&
+          (e.target.checked ? item.duration <= SHORT_MOVIE_TIME : item.duration > 0)
       );
       if (foundMovies.length === 0) {
         appCtx.getSearchResultsMsg('Ничего не найдено');
       }
       appCtx.getFoundMovies(foundMovies);
     }
+    localStorage.setItem(
+      'lastSearch',
+      JSON.stringify({
+        searchRequest: searchInput,
+        filterStatus: e.target.checked,
+        searchResult: foundMovies,
+      })
+    );
     setFilterStatus(!filterStatus);
   };
 
@@ -130,16 +174,23 @@ const SearchForm = () => {
             placeholder='Фильм'
             value={searchInput || ''}
             onChange={handleOnChangeInput}
+            noValidate
+            disabled={formIsDisabled}
           />
           {inputError && <span className='search__error'>{inputError}</span>}
         </label>
-        <button type='submit' className='search__submit opacity08'>
+        <button
+          type='submit'
+          className='search__submit opacity08'
+          disabled={formIsDisabled}
+        >
           Найти
         </button>
         <span className='search__border'></span>
         <FilterCheckbox
           checked={filterStatus}
           onChange={handleOnChangeFilter}
+          isDisabled={formIsDisabled}
         />
       </form>
     </section>
