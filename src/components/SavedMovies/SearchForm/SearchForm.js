@@ -23,8 +23,8 @@ const SearchForm = () => {
     appCtx.getSearchResultsMsg(null);
     const foundMovies = appCtx.savedMovies.filter(
       (item) =>
-        (item.nameRU.includes(searchInput.toLowerCase()) ||
-          item.nameEN.includes(searchInput.toLowerCase())) &&
+        (item.nameRU.toLowerCase().includes(searchInput.toLowerCase()) ||
+          item.nameEN.toLowerCase().includes(searchInput.toLowerCase())) &&
         (filterStatus ? item.duration <= SHORT_MOVIE_TIME : item.duration > 0)
     );
     if (foundMovies.length === 0) {
@@ -58,8 +58,8 @@ const SearchForm = () => {
       appCtx.getSearchResultsMsg(null);
       const foundMovies = appCtx.savedMovies.filter(
         (item) =>
-          (item.nameRU.includes(searchInput.toLowerCase()) ||
-            item.nameEN.includes(searchInput.toLowerCase())) &&
+          (item.nameRU.toLowerCase().includes(searchInput.toLowerCase()) ||
+            item.nameEN.toLowerCase().includes(searchInput.toLowerCase())) &&
           (e.target.checked ? item.duration <= SHORT_MOVIE_TIME : item.duration > 0)
       );
       if (foundMovies.length === 0) {

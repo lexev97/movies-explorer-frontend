@@ -4,17 +4,20 @@ import { useResize } from '../../../hooks/useResize';
 import Preloader from '../Preloader/Preloader';
 import AppContext from '../../../contexts/AppContext';
 import mainApi from '../../../utils/MainApi';
-import { L_CARDS, L_ROW_CARDS, M_CARDS, M_ROW_CARDS, S_CARDS, moviesApiDomine } from '../../../constants/constants';
+import {
+  L_CARDS,
+  L_ROW_CARDS,
+  M_CARDS,
+  M_ROW_CARDS,
+  S_CARDS,
+  moviesApiDomine,
+} from '../../../constants/constants';
 
 const MoviesCardList = () => {
   const appCtx = useContext(AppContext);
   const [isDeleting, setIsDeleting] = useState(null);
 
   const { isScreenS, isScreenM, isScreenL } = useResize();
-
-  useEffect(() => {
-    appCtx.clearRenderedCards();
-  }, []);
 
   useEffect(() => {
     let cardSet = [];
@@ -27,6 +30,7 @@ const MoviesCardList = () => {
           appCtx.renderedCards.length < L_CARDS
         )
           return;
+
         restToRow = L_ROW_CARDS - (appCtx.renderedCards.length % L_ROW_CARDS);
 
         const additionalCardSet = appCtx.foundMovies
@@ -46,7 +50,7 @@ const MoviesCardList = () => {
         return;
       }
       cardSet = appCtx.foundMovies
-        .slice(appCtx.renderedCards.length, L_CARDS)
+        .slice(0, L_CARDS)
         .map((movie) => (
           <MoviesCard
             key={movie.id}
@@ -131,6 +135,10 @@ const MoviesCardList = () => {
     }
   }, [isDeleting]);
 
+  useEffect(() => {
+    appCtx.clearRenderedCards();
+  }, []);
+
   const handleSaveCardClick = (movie) => {
     mainApi
       .addMovie({
@@ -166,7 +174,10 @@ const MoviesCardList = () => {
     let additionalCardSet = [];
     if (isScreenL) {
       additionalCardSet = appCtx.foundMovies
-        .slice(appCtx.renderedCards.length, appCtx.renderedCards.length + L_ROW_CARDS)
+        .slice(
+          appCtx.renderedCards.length,
+          appCtx.renderedCards.length + L_ROW_CARDS
+        )
         .map((movie) => (
           <MoviesCard
             key={movie.id}
@@ -176,7 +187,10 @@ const MoviesCardList = () => {
         ));
     } else if (isScreenM) {
       additionalCardSet = appCtx.foundMovies
-        .slice(appCtx.renderedCards.length, appCtx.renderedCards.length + M_ROW_CARDS)
+        .slice(
+          appCtx.renderedCards.length,
+          appCtx.renderedCards.length + M_ROW_CARDS
+        )
         .map((movie) => (
           <MoviesCard
             key={movie.id}
@@ -186,7 +200,10 @@ const MoviesCardList = () => {
         ));
     } else if (isScreenS) {
       additionalCardSet = appCtx.foundMovies
-        .slice(appCtx.renderedCards.length, appCtx.renderedCards.length + M_ROW_CARDS)
+        .slice(
+          appCtx.renderedCards.length,
+          appCtx.renderedCards.length + M_ROW_CARDS
+        )
         .map((movie) => (
           <MoviesCard
             key={movie.id}

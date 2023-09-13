@@ -95,6 +95,8 @@ function App() {
     location.pathname === '/movies' ||
     location.pathname === '/saved-movies';
 
+  let isLoggedIn = localStorage.getItem('isLoggedIn');
+
   return (
     <Fragment>
       {headerIsVisible && <Header />}
@@ -102,20 +104,28 @@ function App() {
         <Route
           exact
           path='/movies'
-          element={<ProtectedRouteElement element={Movies} />}
+          element={<ProtectedRouteElement element={Movies} isLoggedIn={isLoggedIn} />}
         />
         <Route
           exact
           path='/saved-movies'
-          element={<ProtectedRouteElement element={SavedMovies} />}
+          element={<ProtectedRouteElement element={SavedMovies} isLoggedIn={isLoggedIn} />}
         />
         <Route
           exact
           path='/profile'
-          element={<ProtectedRouteElement element={Profile} />}
+          element={<ProtectedRouteElement element={Profile} isLoggedIn={isLoggedIn} />}
         />
-        <Route path='/signin' element={<Login />} />
-        <Route path='/signup' element={<Register />} />
+        <Route
+          exact
+          path='/signin'
+          element={<ProtectedRouteElement element={Login} isLoggedIn={!isLoggedIn} />}
+        />
+        <Route
+          exact
+          path='/signup'
+          element={<ProtectedRouteElement element={Register} isLoggedIn={!isLoggedIn} />}
+        />
         <Route exact path='*' element={<Popup404 />} />
         <Route path='/' element={<Main />} />
       </Routes>

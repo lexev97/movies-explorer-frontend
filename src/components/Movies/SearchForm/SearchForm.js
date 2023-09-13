@@ -15,38 +15,54 @@ const SearchForm = () => {
 
   useEffect(() => {
     const lastSearch = JSON.parse(localStorage.getItem('lastSearch'));
+
     if (lastSearch) {
+      console.log(lastSearch);
       appCtx.onIsLoading();
       setFormIsDisabled(true);
+      appCtx.getMovies(lastSearch.moviesFromApi);
       setFilterStatus(lastSearch.filterStatus);
       setSearchInput(lastSearch.searchRequest);
-      moviesApi
-        .getMovies()
-        .then((res) => {
-          if (res[0].id) {
-            appCtx.getSearchResultsMsg(null);
-            appCtx.getMovies(res);
-            const foundMovies = lastSearch.searchResult;
-            if (foundMovies.length === 0) {
-              appCtx.getSearchResultsMsg('Ничего не найдено');
-            }
-            appCtx.getFoundMovies(foundMovies);
-            setFormIsDisabled(false);
-            appCtx.offIsLoading();
-          } else {
-            return Promise.reject(res);
-          }
-        })
-        .catch((err) => {
-          setFormIsDisabled(false);
-          appCtx.offIsLoading();
-          appCtx.getSearchResultsMsg(
-            'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
-          );
-        });
+      // moviesApi
+      //   .getMovies()
+      //   .then((res) => {
+      //     if (res[0].id) {
+      //       appCtx.getSearchResultsMsg(null);
+      //       appCtx.getMovies(res);
+      //       const foundMovies = lastSearch.searchResult;
+      //       if (foundMovies.length === 0) {
+      //         appCtx.getSearchResultsMsg('Ничего не найдено');
+      //       }
+      //       appCtx.getFoundMovies(foundMovies);
+      //       setFormIsDisabled(false);
+      //       appCtx.offIsLoading();
+      //     } else {
+      //       return Promise.reject(res);
+      //     }
+      //   })
+      //   .catch((err) => {
+      //     setFormIsDisabled(false);
+      //     appCtx.offIsLoading();
+      //     appCtx.getSearchResultsMsg(
+      //       'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
+      //     );
+      //   });
+
+      // return;
+
+      appCtx.getSearchResultsMsg(null);
+      const foundMovies = lastSearch.searchResult;
+      if (foundMovies.length === 0 && lastSearch.searchRequest) {
+        appCtx.getSearchResultsMsg('Ничего не найдено');
+      }
+      appCtx.getFoundMovies(foundMovies);
+      setFormIsDisabled(false);
+      appCtx.clearRenderedCards();
+      appCtx.offIsLoading();
 
       return;
     }
+
     return;
   }, []);
 
@@ -60,10 +76,10 @@ const SearchForm = () => {
 
     appCtx.clearRenderedCards();
     appCtx.getSearchResultsMsg(null);
-
     appCtx.onIsLoading();
     setFormIsDisabled(true);
     let foundMovies = [];
+
     if (appCtx.movies.length === 0) {
       moviesApi
         .getMovies()
@@ -72,8 +88,12 @@ const SearchForm = () => {
             appCtx.getMovies(res);
             foundMovies = res.filter(
               (item) =>
-                (item.nameRU.includes(searchInput.toLowerCase()) ||
-                  item.nameEN.includes(searchInput.toLowerCase())) &&
+                (item.nameRU
+                  .toLowerCase()
+                  .includes(searchInput.toLowerCase()) ||
+                  item.nameEN
+                    .toLowerCase()
+                    .includes(searchInput.toLowerCase())) &&
                 (filterStatus
                   ? item.duration <= SHORT_MOVIE_TIME
                   : item.duration > 0)
@@ -86,6 +106,7 @@ const SearchForm = () => {
             localStorage.setItem(
               'lastSearch',
               JSON.stringify({
+                moviesFromApi: res,
                 searchRequest: searchInput,
                 filterStatus: e.target[2].checked,
                 searchResult: foundMovies,
@@ -107,10 +128,11 @@ const SearchForm = () => {
 
       return;
     }
+
     foundMovies = appCtx.movies.filter(
       (item) =>
-        (item.nameRU.includes(searchInput.toLowerCase()) ||
-          item.nameEN.includes(searchInput.toLowerCase())) &&
+        (item.nameRU.toLowerCase().includes(searchInput.toLowerCase()) ||
+          item.nameEN.toLowerCase().includes(searchInput.toLowerCase())) &&
         (filterStatus ? item.duration <= SHORT_MOVIE_TIME : item.duration > 0)
     );
     if (foundMovies.length === 0) {
@@ -121,6 +143,7 @@ const SearchForm = () => {
     localStorage.setItem(
       'lastSearch',
       JSON.stringify({
+        moviesFromApi: appCtx.movies,
         searchRequest: searchInput,
         filterStatus: e.target[2].checked,
         searchResult: foundMovies,
@@ -143,9 +166,11 @@ const SearchForm = () => {
       appCtx.getSearchResultsMsg(null);
       foundMovies = appCtx.movies.filter(
         (item) =>
-          (item.nameRU.includes(searchInput.toLowerCase()) ||
-            item.nameEN.includes(searchInput.toLowerCase())) &&
-          (e.target.checked ? item.duration <= SHORT_MOVIE_TIME : item.duration > 0)
+          (item.nameRU.toLowerCase().includes(searchInput.toLowerCase()) ||
+            item.nameEN.toLowerCase().includes(searchInput.toLowerCase())) &&
+          (e.target.checked
+            ? item.duration <= SHORT_MOVIE_TIME
+            : item.duration > 0)
       );
       if (foundMovies.length === 0) {
         appCtx.getSearchResultsMsg('Ничего не найдено');
@@ -155,6 +180,7 @@ const SearchForm = () => {
     localStorage.setItem(
       'lastSearch',
       JSON.stringify({
+        moviesFromApi: appCtx.movies.length > 0 ? appCtx.movies : [],
         searchRequest: searchInput,
         filterStatus: e.target.checked,
         searchResult: foundMovies,
