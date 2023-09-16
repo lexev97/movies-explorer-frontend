@@ -1,48 +1,182 @@
+import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import mainApi from '../../utils/MainApi';
+import InputValidator from '../../utils/InputValidator';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
+import AppContext from '../../contexts/AppContext';
 
-const Register = (props) => {
+const Register = () => {
+  const [nameInput, setNameInput] = useState('');
+  const [nameInputError, setNameInputError] = useState();
+  const [emailInput, setEmailInput] = useState('');
+  const [emailInputError, setEmailInputError] = useState();
+  const [passwordInput, setPasswordInput] = useState('');
+  const [passwordInputError, setPasswordInputError] = useState();
+  const [serverErrorMsg, setServerErrorMsg] = useState();
+  const [formIsDisabled, setFormIsDisabled] = useState(false);
+
+  const appCtx = useContext(AppContext);
+  const navigate = useNavigate();
+
+  const handleOnChangeNameInput = (e) => {
+    setNameInput(e.target.value);
+
+    if (InputValidator.isEmpty(e.target.value)) {
+      setNameInputError('Это поле обязательно к заполнению.');
+      return;
+    }
+    if (InputValidator.isToShort(e.target.value, 2)) {
+      setNameInputError('Введите минимум 2 символа.');
+      return;
+    }
+    if (InputValidator.isToLong(e.target.value, 60)) {
+      setNameInputError('Максимум 60 символов.');
+      return;
+    }
+    if (InputValidator.isName(e.target.value)) {
+      setNameInputError(
+        'Имя должно содержать только латиницу, кириллицу, пробел или дефис.'
+      );
+      return;
+    }
+    setNameInputError(null);
+  };
+  const handleOnChangeEmailInput = (e) => {
+    setEmailInput(e.target.value);
+
+    if (InputValidator.isEmpty(e.target.value)) {
+      setEmailInputError('Это поле обязательно к заполнению.');
+      return;
+    }
+    if (!InputValidator.isEmail(e.target.value)) {
+      setEmailInputError(
+        'Е-mail заполнен некорректно. Пример: email@example.com.'
+      );
+      return;
+    }
+    setEmailInputError(null);
+  };
+  const handleOnChangePasswordInput = (e) => {
+    setPasswordInput(e.target.value);
+    if (InputValidator.isEmpty(e.target.value)) {
+      setPasswordInputError('Это поле обязательно к заполнению.');
+      return;
+    }
+    if (InputValidator.isToShort(e.target.value, 8)) {
+      setPasswordInputError('Введите минимум 8 символов.');
+      return;
+    }
+    setPasswordInputError(null);
+  };
+
+  const handleSubmitButton = (e) => {
+    e.preventDefault();
+    setServerErrorMsg('Создаем пользователя...');
+    setFormIsDisabled(true);
+    const userData = {
+      name: nameInput,
+      email: emailInput,
+      password: passwordInput,
+    };
+
+    mainApi
+      .createUser(userData)
+      .then((res) => {
+        if (res.data) {
+          return mainApi.loginUser({
+            email: emailInput,
+            password: passwordInput,
+          });
+        } else {
+          return Promise.reject(res);
+        }
+      })
+      .then((res) => {
+        if (res.message === 'Авторизация прошла успешно!') {
+          setServerErrorMsg();
+          localStorage.setItem('isLoggedIn', 'true');
+          appCtx.login();
+          setFormIsDisabled(false);
+          navigate('/movies', { replace: true });
+        } else {
+          return Promise.reject(res);
+        }
+      })
+      .catch((err) => {
+        setFormIsDisabled(false);
+        setServerErrorMsg('При регистрации пользователя произошла ошибка.');
+      });
+  };
+
   return (
     <PopupWithForm
       name='register'
       title='Добро пожаловать!'
       buttonText='Зарегистрироваться'
-      isOpen={props.isOpen}
-      onClose={props.onClose}
+      buttonIsDisabled={
+        nameInputError === null &&
+        emailInputError === null &&
+        passwordInputError === null &&
+        !formIsDisabled
+      }
+      serverErrorMsg={serverErrorMsg}
+      onSubmit={handleSubmitButton}
     >
       <label className='popup__input-area'>
         <span className='popup__label'>Имя</span>
         <input
-          className='popup__input'
+          className={`popup__input ${
+            nameInputError ? 'popup__input_error' : ''
+          }`}
           type='text'
           name='descriptionInput'
-          minLength='2'
-          maxLength='50'
           placeholder='Алексей'
           required
+          value={nameInput}
+          onChange={handleOnChangeNameInput}
+          noValidate
+          disabled={formIsDisabled}
         />
+        {nameInputError && (
+          <span className='popup__error'>{nameInputError}</span>
+        )}
       </label>
       <label className='popup__input-area'>
         <span className='popup__label'>E-mail</span>
         <input
-          className='popup__input'
+          className={`popup__input ${
+            emailInputError ? 'popup__input_error' : ''
+          }`}
           type='email'
           id='email-input'
           placeholder='email@example.com'
-          required
+          value={emailInput}
+          onChange={handleOnChangeEmailInput}
+          noValidate
+          disabled={formIsDisabled}
         />
+        {emailInputError && (
+          <span className='popup__error'>{emailInputError}</span>
+        )}
       </label>
       <label className='popup__input-area'>
         <span className='popup__label'>Пароль</span>
         <input
-          className='popup__input'
+          className={`popup__input ${
+            passwordInputError ? 'popup__input_error' : ''
+          }`}
           type='password'
           id='description-input'
           name='descriptionInput'
-          placeholder='Пароль минимум из 6 знаков'
-          minLength='6'
-          maxLength='50'
-          required
+          placeholder='Пароль минимум из 8 знаков'
+          value={passwordInput}
+          onChange={handleOnChangePasswordInput}
+          noValidate
+          disabled={formIsDisabled}
         />
+        {passwordInputError && (
+          <span className='popup__error'>{passwordInputError}</span>
+        )}
       </label>
     </PopupWithForm>
   );

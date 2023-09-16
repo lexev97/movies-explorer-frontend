@@ -6,7 +6,8 @@
 * [Планируемые дополнения](#планируемые-дополнения)
 * [Сайт](#сайт)
 * [Макет](#макет)
-* [Pool-request](#Pool-request)
+* [Pool-request](#pool-request)
+
 <br>
 
 ## Описание
@@ -29,9 +30,9 @@ JavaScript, ReactJS, ReactRouter, HTML5, CSS3, БЭМ, flex, WebPack, Babel, JSO
 - Переход на TS
 
 ## Сайт
-ypdiploma.nomoreparties.co
+https://ypdiploma.nomoreparties.co
 
-## Сайт
+## Макет
 Light-4 (Розовый)
 
 ## Pool-request

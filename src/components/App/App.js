@@ -1,5 +1,5 @@
-import { Fragment, useState } from 'react';
-import { useNavigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Fragment, useContext, useEffect, useState } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
@@ -9,21 +9,79 @@ import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Popup404 from '../Popup404/Popup404';
+import mainApi from '../../utils/MainApi';
+import AppContext from '../../contexts/AppContext';
+import ProtectedRouteElement from '../ProtectedRouteElement/ProtectedRouteElement';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate();
+  const appCtx = useContext(AppContext);
   const location = useLocation();
 
-  const login = (e) => {
-    e.preventDefault();
-    setIsLoggedIn(true);
-    navigate('/');
-  };
+  useEffect(() => {
+    if (!appCtx.isLoggedIn) {
+      tokenCheck();
+    }
+  }, []);
 
-  const logout = () => {
-    setIsLoggedIn(false);
-    navigate('/');
+  useEffect(() => {
+    if (appCtx.isLoggedIn) {
+      mainApi
+        .getUserinfo()
+        .then((res) => {
+          if (res.data._id) {
+            appCtx.getUserInfo(res.data);
+          } else {
+            return Promise.reject(res);
+          }
+        })
+        .catch((err) => {
+          if (err.status === 401) {
+            console.log(
+              'Для получения данных пользователя необходима авторизация'
+            );
+          } else
+            console.log('При загрузке данных пользователя произошла ошибка.');
+        });
+
+      mainApi
+        .getSavedMovies()
+        .then((res) => {
+          if (res.data) {
+            appCtx.getSavedMovies(res.data);
+          } else {
+            return Promise.reject(res);
+          }
+        })
+        .catch((err) => {
+          if (err.status === 401) {
+            console.log(
+              'Для получения сохраненных фильмов необходима авторизация'
+            );
+          } else console.log('При загрузке данных произошла ошибка.');
+        });
+    }
+  }, [appCtx.isLoggedIn]);
+
+  const tokenCheck = () => {
+    mainApi
+      .getUserinfo()
+      .then((res) => {
+        if (res.data._id) {
+          localStorage.setItem('isLoggedIn', 'true');
+          appCtx.login();
+        } else {
+          return Promise.reject(res);
+        }
+      })
+      .catch((err) => {
+        if (err === 400) {
+          console.log('Токен не передан или передан не в том формате');
+        } else if (err === 401) {
+          console.log('Переданный токен некорректен ');
+        } else {
+          console.log(err);
+        }
+      });
   };
 
   const headerIsVisible =
@@ -37,17 +95,39 @@ function App() {
     location.pathname === '/movies' ||
     location.pathname === '/saved-movies';
 
+  let isLoggedIn = localStorage.getItem('isLoggedIn');
+
   return (
     <Fragment>
-      {headerIsVisible && <Header isLoggedIn={isLoggedIn} />}
+      {headerIsVisible && <Header />}
       <Routes>
+        <Route
+          exact
+          path='/movies'
+          element={<ProtectedRouteElement element={Movies} isLoggedIn={isLoggedIn} />}
+        />
+        <Route
+          exact
+          path='/saved-movies'
+          element={<ProtectedRouteElement element={SavedMovies} isLoggedIn={isLoggedIn} />}
+        />
+        <Route
+          exact
+          path='/profile'
+          element={<ProtectedRouteElement element={Profile} isLoggedIn={isLoggedIn} />}
+        />
+        <Route
+          exact
+          path='/signin'
+          element={<ProtectedRouteElement element={Login} isLoggedIn={!isLoggedIn} />}
+        />
+        <Route
+          exact
+          path='/signup'
+          element={<ProtectedRouteElement element={Register} isLoggedIn={!isLoggedIn} />}
+        />
+        <Route exact path='*' element={<Popup404 />} />
         <Route path='/' element={<Main />} />
-        <Route path='/movies' element={<Movies />} />
-        <Route path='/saved-movies' element={<SavedMovies />} />
-        <Route path='/profile' element={<Profile logout={logout} />} />
-        <Route path='/signin' element={<Login login={login} />} />
-        <Route path='/signup' element={<Register />} />
-        <Route path='/*' element={<Popup404 />} />
       </Routes>
       {footerIsVisible && <Footer />}
     </Fragment>

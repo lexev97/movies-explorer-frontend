@@ -8,7 +8,6 @@ const FilterCheckbox = (props) => {
           className='filter__checkbox-input'
           checked={props.checked}
           onChange={props.onChange}
-          disabled={props.isDisabled}
         />
         <span className='filter__checkbox-custom opacity08'></span>
       </label>
