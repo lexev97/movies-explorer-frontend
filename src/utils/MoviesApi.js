@@ -16,7 +16,6 @@ class MoviesApi {
 
   getMovies() {
     return fetch(this._baseUrl, {
-      method: 'GET',
       headers: this._headers,
     }).then(res => this._getResponseData(res));
   }

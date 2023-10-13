@@ -17,7 +17,6 @@ class MainApi {
 
   getUserinfo() {
     return fetch(this._baseUrl + '/users/me', {
-      method: 'GET',
       headers: this._headers,
       credentials: 'include',
     }).then((res) => this._getResponseData(res));
@@ -70,7 +69,6 @@ class MainApi {
 
   getSavedMovies() {
     return fetch(this._baseUrl + '/movies', {
-      method: 'GET',
       headers: this._headers,
       credentials: 'include',
     }).then((res) => this._getResponseData(res));
