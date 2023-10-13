@@ -4,7 +4,7 @@ class MainApi {
     // this._baseUrl = 'http://localhost:5000';
     this._headers = {
       'Content-Type': 'application/json',
-      'Referrer-Policy': 'origin-when-cross-origin',
+      'Origin': 'https://ypdiploma.nomoreparties.co',
     };
   }
 
