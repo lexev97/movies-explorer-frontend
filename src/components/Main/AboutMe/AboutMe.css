@@ -57,6 +57,16 @@
   line-height: 22px;
 }
 
+.student__hard-skill {
+  list-style: inside;
+  padding: 0;
+}
+
+.student__hard-skill li {
+
+  margin-top: 5px;
+}
+
 .student__image {
   position: relative;
   border-radius: 10px;
@@ -113,7 +123,7 @@
 @media screen and (max-width: 580px) {
   .student__info {
     display: flex;
-    flex-direction: column-reverse;    
+    flex-direction: column-reverse;
   }
 }
 

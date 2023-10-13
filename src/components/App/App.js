@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect, useState } from 'react';
+import { Fragment, useContext, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -104,27 +104,43 @@ function App() {
         <Route
           exact
           path='/movies'
-          element={<ProtectedRouteElement element={Movies} isLoggedIn={isLoggedIn} />}
+          element={
+            <ProtectedRouteElement element={Movies} isLoggedIn={isLoggedIn} />
+          }
         />
         <Route
           exact
           path='/saved-movies'
-          element={<ProtectedRouteElement element={SavedMovies} isLoggedIn={isLoggedIn} />}
+          element={
+            <ProtectedRouteElement
+              element={SavedMovies}
+              isLoggedIn={isLoggedIn}
+            />
+          }
         />
         <Route
           exact
           path='/profile'
-          element={<ProtectedRouteElement element={Profile} isLoggedIn={isLoggedIn} />}
+          element={
+            <ProtectedRouteElement element={Profile} isLoggedIn={isLoggedIn} />
+          }
         />
         <Route
           exact
           path='/signin'
-          element={<ProtectedRouteElement element={Login} isLoggedIn={!isLoggedIn} />}
+          element={
+            <ProtectedRouteElement element={Login} isLoggedIn={!isLoggedIn} />
+          }
         />
         <Route
           exact
           path='/signup'
-          element={<ProtectedRouteElement element={Register} isLoggedIn={!isLoggedIn} />}
+          element={
+            <ProtectedRouteElement
+              element={Register}
+              isLoggedIn={!isLoggedIn}
+            />
+          }
         />
         <Route exact path='*' element={<Popup404 />} />
         <Route path='/' element={<Main />} />

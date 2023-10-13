@@ -24,6 +24,8 @@
 }
 
 .portfolio__link {
+  display: flex;
+  flex-direction: column;
   border-bottom: 1px solid #e8e8e8;
   padding: 20px 0 19px 0;
   display: flex;
@@ -40,6 +42,19 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.portfolio__link-comment {
+  color: #a0a0a0;
+  font-style: normal;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  align-self: flex-start;
+}
+.portfolio__link-comment span{
+  color: rgb(60, 60, 60);
+  font-style: italic;
 }
 
 .portfolio__link:last-of-type {
