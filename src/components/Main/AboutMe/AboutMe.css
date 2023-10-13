@@ -48,7 +48,7 @@
 }
 
 .student__about {
-  margin: 0 0 99px 0;
+  margin: 0 0 0 0;
   padding: 0;
   font-feature-settings: 'clig' off, 'liga' off;
   font-size: 14px;
@@ -60,10 +60,15 @@
 .student__hard-skill {
   list-style: inside;
   padding: 0;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  margin: 0 0 50px 0;
 }
 
 .student__hard-skill li {
-
   margin-top: 5px;
 }
 
