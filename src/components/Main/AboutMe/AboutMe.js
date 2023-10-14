@@ -1,4 +1,3 @@
-
 const AboutMe = () => {
   return (
     <section
@@ -11,9 +10,6 @@ const AboutMe = () => {
         <div className='student__text'>
           <h3 className='student__name'>Алексей</h3>
           <p className='student__profession'>Фронтенд-разработчик, 34 года</p>
-          <p className='student__about'>
-            За время обучения на факультете овладел следующими навыками:
-          </p>
           <ul className='student__hard-skill'>
             <li>
               Отработал начальные навыки HTML, CSS и JavaScript, узнал правила
@@ -64,8 +60,6 @@ const AboutMe = () => {
           >
             Github
           </a>
-        </div>
-        <div className='student__image'>
         </div>
       </div>
     </section>
