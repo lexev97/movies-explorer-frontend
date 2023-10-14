@@ -67,7 +67,7 @@ const AboutMe = () => {
           </a>
         </div>
         <div className='student__image'>
-          {/* <img className='student__pic' src={student} alt='Фото студента'></img> */}
+          <img className='student__pic' src={student} alt='Фото студента'></img>
         </div>
       </div>
     </section>
