@@ -1,4 +1,3 @@
-import student from '../../../images/student.jpg';
 
 const AboutMe = () => {
   return (
