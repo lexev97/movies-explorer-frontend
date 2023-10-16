@@ -35,7 +35,8 @@ const Portfolio = () => {
             Одностраничное приложение
             <span>&#8599;</span>
           </a>
-          <span className='portfolio__link-comment'>Тестовый аккаунт: <span>mail@mail.ru</span>, pass: <span>123456789</span></span>
+          <span className='portfolio__link-comment'>Тестовый аккаунт: <span>mail@mail.ru</span></span>
+          <span className='portfolio__link-comment'>Пароль: <span>123456789</span></span>
         </li>
       </ul>
     </section>

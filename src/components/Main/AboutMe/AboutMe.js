@@ -10,8 +10,9 @@ const AboutMe = () => {
         <div className='student__text'>
           <h3 className='student__name'>Алексей</h3>
           <p className='student__profession'>Фронтенд-разработчик, 34 года</p>
-          <ul className='student__hard-skill'>
+          <ul className='student__hard-skills'>
             <li>
+            <div className='student__hard-skill hard-skill__1n'></div>
               Отработал начальные навыки HTML, CSS и JavaScript, узнал правила
               HTML-разметки, научился работать со стилями, освоил базовый
               синтаксис HTML и CSS. Ознакомился с flexbox, работой с
@@ -20,6 +21,7 @@ const AboutMe = () => {
               (102 часа)
             </li>
             <li>
+            <div className='student__hard-skill hard-skill__2n'></div>
               Научился работать с макетами, создавать интерфейсы для разных
               устройств (настольных компьютеров, ноутбуков, планшетов,
               смартфонов), размещать сайт в интернете и публиковать изменения в
@@ -27,6 +29,7 @@ const AboutMe = () => {
               (47 часов)
             </li>
             <li>
+              <div className='student__hard-skill hard-skill__3n'></div>
               Исследовал типы данных, научился работать с условиями, циклами и
               функциями. Изучил DOM и научился добавлять вёрстку в проект с
               помощью JavaScript, а также научился делать интерактивные формы с
@@ -34,6 +37,7 @@ const AboutMe = () => {
               (115 часов)
             </li>
             <li>
+            <div className='student__hard-skill hard-skill__4n'></div>
               Освоил такие концепции языка как объектно-ориентированное
               программирование, асинхронность и обмен данными с сервером.
               Познакомился с менеджером пакетов npm и научится добавлять
@@ -41,11 +45,13 @@ const AboutMe = () => {
               (113 часов)
             </li>
             <li>
+            <div className='student__hard-skill hard-skill__5n'></div>
               Изучил библиотеки React и её экосистемы, ознакомился со всеми
               базовыми концепциями React. <br />
               (113 часов)
             </li>
             <li>
+            <div className='student__hard-skill hard-skill__6n'></div>
               Изучил JavaScript в среде Node.js, поднятие и настройку сервера.
               Ознакомился с фреймворком Express.js и базой данных MongoDB.{' '}
               <br />

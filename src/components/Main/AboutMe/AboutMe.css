@@ -46,7 +46,7 @@
   font-feature-settings: 'clig' off, 'liga' off;
 }
 
-.student__hard-skill {
+.student__hard-skills {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -58,6 +58,41 @@
   font-weight: 400;
   line-height: 22px;
   margin: 30px 0 50px 0;
+}
+
+.student__hard-skills li {
+  position: relative;
+}
+
+.student__hard-skill {
+  position: absolute;
+  top: -25px;
+  left: -10px;
+  width: 100%;
+  height: 200%;
+  opacity: 0.3;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-size: 20%;
+}
+
+.hard-skill__1n {
+  background-image: url(./../../../images/digits/1.svg);
+}
+.hard-skill__2n {
+  background-image: url(./../../../images/digits/2.svg);
+}
+.hard-skill__3n {
+  background-image: url(./../../../images/digits/3.svg);
+}
+.hard-skill__4n {
+  background-image: url(./../../../images/digits/4.svg);
+}
+.hard-skill__5n {
+  background-image: url(./../../../images/digits/5.svg);
+}
+.hard-skill__6n {
+  background-image: url(./../../../images/digits/6.svg);
 }
 
 .student__github {
@@ -72,7 +107,7 @@
     padding: 90px 50px;
   }
 
-  .student__hard-skill {
+  .student__hard-skills {
     grid-template-columns: repeat(1, 1fr);
   }
 
